@@ -9,10 +9,11 @@ import {
 interface DiversidadeSectionProps {
   ano: number;
   mes: string | null;
+  regional?: string | null;
 }
 
-export function DiversidadeSection({ ano, mes }: DiversidadeSectionProps) {
-  const divData = getFilteredData(getDiversidadeData(ano), mes);
+export function DiversidadeSection({ ano, mes, regional }: DiversidadeSectionProps) {
+  const divData = getFilteredData(getDiversidadeData(ano, regional), mes);
   const validData = divData.filter(d => d.apurado !== null) as typeof divData;
   const lastDiv = validData.at(-1);
   const totalContratados = calcTotalContratacoes(divData);

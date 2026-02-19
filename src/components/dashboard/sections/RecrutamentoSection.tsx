@@ -11,11 +11,12 @@ import {
 interface RecrutamentoSectionProps {
   ano: number;
   mes: string | null;
+  regional?: string | null;
 }
 
-export function RecrutamentoSection({ ano, mes }: RecrutamentoSectionProps) {
-  const slaData = getFilteredData(getSlaData(ano), mes);
-  const vagasData = getFilteredData(getVagasData(ano), mes);
+export function RecrutamentoSection({ ano, mes, regional }: RecrutamentoSectionProps) {
+  const slaData = getFilteredData(getSlaData(ano, regional), mes);
+  const vagasData = getFilteredData(getVagasData(ano, regional), mes);
   const recData = getRecrutadoresData(ano);
 
   const slaMedia = calcSlaMedia(slaData);

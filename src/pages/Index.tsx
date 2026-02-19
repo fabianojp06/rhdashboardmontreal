@@ -16,23 +16,24 @@ const Index = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [ano, setAno] = useState(2025);
   const [mes, setMes] = useState<string | null>(null);
+  const [regional, setRegional] = useState<string | null>(null);
 
   const insights = generateInsights(ano, mes);
 
   const renderSection = () => {
     switch (activeSection) {
-      case "overview":     return <OverviewSection ano={ano} mes={mes} />;
-      case "recrutamento": return <RecrutamentoSection ano={ano} mes={mes} />;
-      case "diversidade":  return <DiversidadeSection ano={ano} mes={mes} />;
+      case "overview":     return <OverviewSection ano={ano} mes={mes} regional={regional} />;
+      case "recrutamento": return <RecrutamentoSection ano={ano} mes={mes} regional={regional} />;
+      case "diversidade":  return <DiversidadeSection ano={ano} mes={mes} regional={regional} />;
       case "enps":         return <EnpsSection ano={ano} mes={mes} />;
       case "financeiro":   return <FinanceiroSection ano={ano} mes={mes} />;
       case "yoy":          return <YoYSection />;
       case "regional":     return <RegionalSection />;
-      default:             return <OverviewSection ano={ano} mes={mes} />;
+      default:             return <OverviewSection ano={ano} mes={mes} regional={regional} />;
     }
   };
 
-  // YoY and Regional don't use year/month filters
+  // YoY and Regional don't use year/month/regional filters
   const showFilters = !['yoy', 'regional'].includes(activeSection);
 
   return (
@@ -48,8 +49,10 @@ const Index = () => {
         <DashboardHeader
           ano={ano}
           mes={mes}
+          regional={regional}
           onAnoChange={setAno}
           onMesChange={setMes}
+          onRegionalChange={setRegional}
           activeSection={activeSection}
           showFilters={showFilters}
         />

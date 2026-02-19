@@ -16,12 +16,13 @@ import {
 interface OverviewSectionProps {
   ano: number;
   mes: string | null;
+  regional?: string | null;
 }
 
-export function OverviewSection({ ano, mes }: OverviewSectionProps) {
-  const slaData = getFilteredData(getSlaData(ano), mes);
-  const vagasData = getFilteredData(getVagasData(ano), mes);
-  const divData = getFilteredData(getDiversidadeData(ano), mes);
+export function OverviewSection({ ano, mes, regional }: OverviewSectionProps) {
+  const slaData = getFilteredData(getSlaData(ano, regional), mes);
+  const vagasData = getFilteredData(getVagasData(ano, regional), mes);
+  const divData = getFilteredData(getDiversidadeData(ano, regional), mes);
   const enpsData = getFilteredData(getEnpsData(ano), mes);
 
   const slaMedia = calcSlaMedia(slaData);
