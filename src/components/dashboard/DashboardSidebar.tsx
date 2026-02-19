@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import {
   LayoutDashboard, Users, Target, Heart, DollarSign,
-  ChevronLeft, ChevronRight, TrendingUp
+  ChevronLeft, ChevronRight, TrendingUp, GitCompare, MapPin
 } from "lucide-react";
 
 interface SidebarProps {
@@ -11,12 +11,24 @@ interface SidebarProps {
   onToggle: () => void;
 }
 
-const navItems = [
-  { id: 'overview',      label: 'Visão Geral',         icon: LayoutDashboard },
-  { id: 'recrutamento',  label: 'Recrutamento',         icon: Target },
-  { id: 'diversidade',   label: 'Diversidade & Inclusão', icon: Users },
-  { id: 'enps',          label: 'eNPS & Engajamento',   icon: Heart },
-  { id: 'financeiro',    label: 'Financeiro (ROI)',     icon: DollarSign },
+const navGroups = [
+  {
+    label: 'Principal',
+    items: [
+      { id: 'overview',      label: 'Visão Geral',           icon: LayoutDashboard },
+      { id: 'recrutamento',  label: 'Recrutamento',           icon: Target },
+      { id: 'diversidade',   label: 'Diversidade & Inclusão', icon: Users },
+      { id: 'enps',          label: 'eNPS & Engajamento',     icon: Heart },
+      { id: 'financeiro',    label: 'Financeiro (ROI)',       icon: DollarSign },
+    ],
+  },
+  {
+    label: 'Análises',
+    items: [
+      { id: 'yoy',           label: 'Comparativo YoY',        icon: GitCompare },
+      { id: 'regional',      label: 'Performance Regional',   icon: MapPin },
+    ],
+  },
 ];
 
 export function DashboardSidebar({ activeSection, onSectionChange, collapsed, onToggle }: SidebarProps) {
@@ -45,35 +57,41 @@ export function DashboardSidebar({ activeSection, onSectionChange, collapsed, on
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 py-4 px-2 space-y-1">
-        {!collapsed && (
-          <p className="text-[10px] uppercase tracking-widest text-subtle px-2 mb-3 font-semibold">Menu</p>
-        )}
-        {navItems.map((item) => {
-          const Icon = item.icon;
-          const isActive = activeSection === item.id;
-          return (
-            <button
-              key={item.id}
-              onClick={() => onSectionChange(item.id)}
-              className={cn(
-                "w-full flex items-center gap-3 rounded-lg transition-all duration-200",
-                "text-left text-sm font-medium",
-                collapsed ? "justify-center p-2" : "px-3 py-2.5",
-                isActive
-                  ? "bg-primary/15 text-primary border border-primary/25 glow-crimson"
-                  : "text-muted-foreground hover:text-foreground hover:bg-surface-2"
-              )}
-              title={collapsed ? item.label : undefined}
-            >
-              <Icon className={cn("flex-shrink-0", collapsed ? "w-5 h-5" : "w-4 h-4")} />
-              {!collapsed && <span>{item.label}</span>}
-              {isActive && !collapsed && (
-                <span className="ml-auto w-1.5 h-1.5 rounded-full bg-primary pulse-dot" />
-              )}
-            </button>
-          );
-        })}
+      <nav className="flex-1 py-4 px-2 space-y-4 overflow-y-auto">
+        {navGroups.map((group) => (
+          <div key={group.label}>
+            {!collapsed && (
+              <p className="text-[10px] uppercase tracking-widest text-subtle px-2 mb-2 font-semibold">{group.label}</p>
+            )}
+            <div className="space-y-0.5">
+              {group.items.map((item) => {
+                const Icon = item.icon;
+                const isActive = activeSection === item.id;
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => onSectionChange(item.id)}
+                    className={cn(
+                      "w-full flex items-center gap-3 rounded-lg transition-all duration-200",
+                      "text-left text-sm font-medium",
+                      collapsed ? "justify-center p-2" : "px-3 py-2.5",
+                      isActive
+                        ? "bg-primary/15 text-primary border border-primary/25 glow-crimson"
+                        : "text-muted-foreground hover:text-foreground hover:bg-surface-2"
+                    )}
+                    title={collapsed ? item.label : undefined}
+                  >
+                    <Icon className={cn("flex-shrink-0", collapsed ? "w-5 h-5" : "w-4 h-4")} />
+                    {!collapsed && <span>{item.label}</span>}
+                    {isActive && !collapsed && (
+                      <span className="ml-auto w-1.5 h-1.5 rounded-full bg-primary pulse-dot" />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        ))}
       </nav>
 
       {/* Footer */}

@@ -7,6 +7,8 @@ import { RecrutamentoSection } from "@/components/dashboard/sections/Recrutament
 import { DiversidadeSection } from "@/components/dashboard/sections/DiversidadeSection";
 import { EnpsSection } from "@/components/dashboard/sections/EnpsSection";
 import { FinanceiroSection } from "@/components/dashboard/sections/FinanceiroSection";
+import { YoYSection } from "@/components/dashboard/sections/YoYSection";
+import { RegionalSection } from "@/components/dashboard/sections/RegionalSection";
 import { generateInsights } from "@/data/hrData";
 
 const Index = () => {
@@ -24,9 +26,14 @@ const Index = () => {
       case "diversidade":  return <DiversidadeSection ano={ano} mes={mes} />;
       case "enps":         return <EnpsSection ano={ano} mes={mes} />;
       case "financeiro":   return <FinanceiroSection ano={ano} mes={mes} />;
+      case "yoy":          return <YoYSection />;
+      case "regional":     return <RegionalSection />;
       default:             return <OverviewSection ano={ano} mes={mes} />;
     }
   };
+
+  // YoY and Regional don't use year/month filters
+  const showFilters = !['yoy', 'regional'].includes(activeSection);
 
   return (
     <div className="flex min-h-screen w-full bg-background">
@@ -44,15 +51,14 @@ const Index = () => {
           onAnoChange={setAno}
           onMesChange={setMes}
           activeSection={activeSection}
+          showFilters={showFilters}
         />
 
         <div className="flex flex-1 overflow-hidden">
-          {/* Main content */}
           <main className="flex-1 overflow-y-auto p-6">
             {renderSection()}
           </main>
 
-          {/* Insights Panel */}
           <aside className="w-72 flex-shrink-0 border-l border-border overflow-y-auto">
             <InsightsPanel insights={insights} />
           </aside>
