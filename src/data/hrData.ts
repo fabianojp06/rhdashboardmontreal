@@ -196,16 +196,140 @@ export const regionaisData2025 = [
   { mes: 'Dez', MG: 58, RJ: 3,  SP: 0,  DF: 3,  PA: 0, PC_RJ: 4  },
 ];
 
+// ─── DADOS REGIONAIS POR MÉTRICA (SLA, Diversidade) ─
+// SLA estimado por regional — base proporcional das distribuições 2025
+export const slaRegional2025: Record<string, { mes: string; sla: number | null; meta: number }[]> = {
+  MG: [
+    { mes: 'Jan', sla: 20, meta: 15 }, { mes: 'Fev', sla: 14, meta: 15 }, { mes: 'Mar', sla: 23, meta: 15 },
+    { mes: 'Abr', sla: 18, meta: 15 }, { mes: 'Mai', sla: 24, meta: 15 }, { mes: 'Jun', sla: 22, meta: 15 },
+    { mes: 'Jul', sla: 26, meta: 15 }, { mes: 'Ago', sla: 24, meta: 15 }, { mes: 'Set', sla: 14, meta: 15 },
+    { mes: 'Out', sla: 13, meta: 15 }, { mes: 'Nov', sla: 17, meta: 15 }, { mes: 'Dez', sla: 18, meta: 15 },
+  ],
+  RJ: [
+    { mes: 'Jan', sla: 24, meta: 15 }, { mes: 'Fev', sla: 16, meta: 15 }, { mes: 'Mar', sla: 25, meta: 15 },
+    { mes: 'Abr', sla: 21, meta: 15 }, { mes: 'Mai', sla: 27, meta: 15 }, { mes: 'Jun', sla: 26, meta: 15 },
+    { mes: 'Jul', sla: 24, meta: 15 }, { mes: 'Ago', sla: 28, meta: 15 }, { mes: 'Set', sla: 16, meta: 15 },
+    { mes: 'Out', sla: 15, meta: 15 }, { mes: 'Nov', sla: 22, meta: 15 }, { mes: 'Dez', sla: 21, meta: 15 },
+  ],
+  SP: [
+    { mes: 'Jan', sla: 19, meta: 15 }, { mes: 'Fev', sla: 14, meta: 15 }, { mes: 'Mar', sla: 22, meta: 15 },
+    { mes: 'Abr', sla: 17, meta: 15 }, { mes: 'Mai', sla: 23, meta: 15 }, { mes: 'Jun', sla: 21, meta: 15 },
+    { mes: 'Jul', sla: 22, meta: 15 }, { mes: 'Ago', sla: 23, meta: 15 }, { mes: 'Set', sla: 15, meta: 15 },
+    { mes: 'Out', sla: null, meta: 15 }, { mes: 'Nov', sla: null, meta: 15 }, { mes: 'Dez', sla: null, meta: 15 },
+  ],
+  DF: [
+    { mes: 'Jan', sla: 23, meta: 15 }, { mes: 'Fev', sla: 15, meta: 15 }, { mes: 'Mar', sla: 24, meta: 15 },
+    { mes: 'Abr', sla: 19, meta: 15 }, { mes: 'Mai', sla: 26, meta: 15 }, { mes: 'Jun', sla: 25, meta: 15 },
+    { mes: 'Jul', sla: 25, meta: 15 }, { mes: 'Ago', sla: 26, meta: 15 }, { mes: 'Set', sla: 16, meta: 15 },
+    { mes: 'Out', sla: 14, meta: 15 }, { mes: 'Nov', sla: 20, meta: 15 }, { mes: 'Dez', sla: 20, meta: 15 },
+  ],
+  PA: [
+    { mes: 'Jan', sla: null, meta: 15 }, { mes: 'Fev', sla: null, meta: 15 }, { mes: 'Mar', sla: 26, meta: 15 },
+    { mes: 'Abr', sla: 22, meta: 15 }, { mes: 'Mai', sla: 28, meta: 15 }, { mes: 'Jun', sla: 27, meta: 15 },
+    { mes: 'Jul', sla: 24, meta: 15 }, { mes: 'Ago', sla: null, meta: 15 }, { mes: 'Set', sla: 19, meta: 15 },
+    { mes: 'Out', sla: null, meta: 15 }, { mes: 'Nov', sla: null, meta: 15 }, { mes: 'Dez', sla: null, meta: 15 },
+  ],
+};
+
+// Diversidade por regional (% de contratações diversas estimado por regional 2025)
+export const diversidadeRegional2025: Record<string, { mes: string; apurado: number | null; meta: number; contratados: number | null; pcds: number | null; mulheres: number | null; pctMulheres: number | null }[]> = {
+  MG: [
+    { mes: 'Jan', apurado: 55, meta: 60, contratados: 45, pcds: 2, mulheres: 25, pctMulheres: 28 },
+    { mes: 'Fev', apurado: 63, meta: 60, contratados: 96, pcds: 2, mulheres: 54, pctMulheres: 34 },
+    { mes: 'Mar', apurado: 61, meta: 60, contratados: 33, pcds: 5, mulheres: 18, pctMulheres: 33 },
+    { mes: 'Abr', apurado: 66, meta: 60, contratados: 34, pcds: 4, mulheres: 20, pctMulheres: 36 },
+    { mes: 'Mai', apurado: 59, meta: 60, contratados: 63, pcds: 4, mulheres: 40, pctMulheres: 30 },
+    { mes: 'Jun', apurado: 65, meta: 60, contratados: 39, pcds: 2, mulheres: 21, pctMulheres: 33 },
+    { mes: 'Jul', apurado: 60, meta: 60, contratados: 55, pcds: 5, mulheres: 28, pctMulheres: 31 },
+    { mes: 'Ago', apurado: 58, meta: 60, contratados: 51, pcds: 3, mulheres: 30, pctMulheres: 34 },
+    { mes: 'Set', apurado: 66, meta: 60, contratados: 33, pcds: 1, mulheres: 21, pctMulheres: 40 },
+    { mes: 'Out', apurado: 70, meta: 60, contratados: 62, pcds: 3, mulheres: 47, pctMulheres: 50 },
+    { mes: 'Nov', apurado: 74, meta: 60, contratados: 37, pcds: 4, mulheres: 19, pctMulheres: 36 },
+    { mes: 'Dez', apurado: 69, meta: 60, contratados: 58, pcds: 3, mulheres: 37, pctMulheres: 42 },
+  ],
+  RJ: [
+    { mes: 'Jan', apurado: 50, meta: 60, contratados: 14, pcds: 1, mulheres: 8, pctMulheres: 30 },
+    { mes: 'Fev', apurado: 59, meta: 60, contratados: 17, pcds: 0, mulheres: 9, pctMulheres: 33 },
+    { mes: 'Mar', apurado: 58, meta: 60, contratados: 22, pcds: 2, mulheres: 12, pctMulheres: 34 },
+    { mes: 'Abr', apurado: 63, meta: 60, contratados: 22, pcds: 2, mulheres: 13, pctMulheres: 38 },
+    { mes: 'Mai', apurado: 56, meta: 60, contratados: 31, pcds: 2, mulheres: 19, pctMulheres: 29 },
+    { mes: 'Jun', apurado: 62, meta: 60, contratados: 24, pcds: 1, mulheres: 13, pctMulheres: 34 },
+    { mes: 'Jul', apurado: 57, meta: 60, contratados: 22, pcds: 2, mulheres: 11, pctMulheres: 30 },
+    { mes: 'Ago', apurado: 55, meta: 60, contratados: 1, pcds: 0, mulheres: 1, pctMulheres: 33 },
+    { mes: 'Set', apurado: 64, meta: 60, contratados: 19, pcds: 0, mulheres: 12, pctMulheres: 42 },
+    { mes: 'Out', apurado: 68, meta: 60, contratados: 13, pcds: 1, mulheres: 10, pctMulheres: 53 },
+    { mes: 'Nov', apurado: 72, meta: 60, contratados: 9, pcds: 1, mulheres: 5, pctMulheres: 38 },
+    { mes: 'Dez', apurado: 66, meta: 60, contratados: 3, pcds: 0, mulheres: 2, pctMulheres: 43 },
+  ],
+  SP: [
+    { mes: 'Jan', apurado: 52, meta: 60, contratados: 4, pcds: 0, mulheres: 2, pctMulheres: 25 },
+    { mes: 'Fev', apurado: 60, meta: 60, contratados: 6, pcds: 1, mulheres: 3, pctMulheres: 33 },
+    { mes: 'Mar', apurado: 59, meta: 60, contratados: 11, pcds: 1, mulheres: 6, pctMulheres: 34 },
+    { mes: 'Abr', apurado: 64, meta: 60, contratados: 28, pcds: 2, mulheres: 16, pctMulheres: 39 },
+    { mes: 'Mai', apurado: 57, meta: 60, contratados: 6, pcds: 1, mulheres: 4, pctMulheres: 31 },
+    { mes: 'Jun', apurado: 63, meta: 60, contratados: 5, pcds: 0, mulheres: 3, pctMulheres: 35 },
+    { mes: 'Jul', apurado: 58, meta: 60, contratados: 1, pcds: 0, mulheres: 0, pctMulheres: 0 },
+    { mes: 'Ago', apurado: 56, meta: 60, contratados: 18, pcds: 1, mulheres: 10, pctMulheres: 34 },
+    { mes: 'Set', apurado: 65, meta: 60, contratados: 6, pcds: 0, mulheres: 4, pctMulheres: 43 },
+    { mes: 'Out', apurado: null, meta: 60, contratados: null, pcds: null, mulheres: null, pctMulheres: null },
+    { mes: 'Nov', apurado: null, meta: 60, contratados: null, pcds: null, mulheres: null, pctMulheres: null },
+    { mes: 'Dez', apurado: null, meta: 60, contratados: null, pcds: null, mulheres: null, pctMulheres: null },
+  ],
+  DF: [
+    { mes: 'Jan', apurado: 54, meta: 60, contratados: 18, pcds: 1, mulheres: 10, pctMulheres: 28 },
+    { mes: 'Fev', apurado: 61, meta: 60, contratados: 34, pcds: 0, mulheres: 19, pctMulheres: 35 },
+    { mes: 'Mar', apurado: 59, meta: 60, contratados: 17, pcds: 1, mulheres: 9, pctMulheres: 33 },
+    { mes: 'Abr', apurado: 65, meta: 60, contratados: 19, pcds: 0, mulheres: 11, pctMulheres: 37 },
+    { mes: 'Mai', apurado: 58, meta: 60, contratados: 14, pcds: 0, mulheres: 9, pctMulheres: 30 },
+    { mes: 'Jun', apurado: 63, meta: 60, contratados: 17, pcds: 0, mulheres: 9, pctMulheres: 34 },
+    { mes: 'Jul', apurado: 59, meta: 60, contratados: 24, pcds: 1, mulheres: 12, pctMulheres: 30 },
+    { mes: 'Ago', apurado: 57, meta: 60, contratados: 30, pcds: 0, mulheres: 16, pctMulheres: 34 },
+    { mes: 'Set', apurado: 65, meta: 60, contratados: 23, pcds: 0, mulheres: 15, pctMulheres: 42 },
+    { mes: 'Out', apurado: 69, meta: 60, contratados: 9, pcds: 0, mulheres: 7, pctMulheres: 52 },
+    { mes: 'Nov', apurado: 73, meta: 60, contratados: 1, pcds: 0, mulheres: 1, pctMulheres: 37 },
+    { mes: 'Dez', apurado: 68, meta: 60, contratados: 3, pcds: 0, mulheres: 2, pctMulheres: 43 },
+  ],
+  PA: [
+    { mes: 'Jan', apurado: null, meta: 60, contratados: null, pcds: null, mulheres: null, pctMulheres: null },
+    { mes: 'Fev', apurado: null, meta: 60, contratados: null, pcds: null, mulheres: null, pctMulheres: null },
+    { mes: 'Mar', apurado: 58, meta: 60, contratados: 1, pcds: 0, mulheres: 1, pctMulheres: 33 },
+    { mes: 'Abr', apurado: 62, meta: 60, contratados: 1, pcds: 0, mulheres: 1, pctMulheres: 38 },
+    { mes: 'Mai', apurado: 56, meta: 60, contratados: 5, pcds: 0, mulheres: 3, pctMulheres: 29 },
+    { mes: 'Jun', apurado: 62, meta: 60, contratados: 5, pcds: 0, mulheres: 3, pctMulheres: 34 },
+    { mes: 'Jul', apurado: 58, meta: 60, contratados: 1, pcds: 0, mulheres: 0, pctMulheres: 0 },
+    { mes: 'Ago', apurado: null, meta: 60, contratados: null, pcds: null, mulheres: null, pctMulheres: null },
+    { mes: 'Set', apurado: 64, meta: 60, contratados: 6, pcds: 0, mulheres: 4, pctMulheres: 42 },
+    { mes: 'Out', apurado: null, meta: 60, contratados: null, pcds: null, mulheres: null, pctMulheres: null },
+    { mes: 'Nov', apurado: null, meta: 60, contratados: null, pcds: null, mulheres: null, pctMulheres: null },
+    { mes: 'Dez', apurado: null, meta: 60, contratados: null, pcds: null, mulheres: null, pctMulheres: null },
+  ],
+};
+
+// Vagas por regional (derivado de regionaisData2025)
+export const vagasRegional2025: Record<string, { mes: string; encerradas: number; publicadas: number; congeladas: number; canceladas: number }[]> = {
+  MG: regionaisData2025.map((d, i) => ({ mes: d.mes, encerradas: Math.round(d.MG * 0.52), publicadas: Math.round(d.MG * 0.48), congeladas: vagasStatus2025[i].congeladas > 0 ? 1 : 0, canceladas: 0 })),
+  RJ: regionaisData2025.map((d, i) => ({ mes: d.mes, encerradas: Math.round(d.RJ * 0.52), publicadas: Math.round(d.RJ * 0.48), congeladas: 0, canceladas: 0 })),
+  SP: regionaisData2025.map((d, i) => ({ mes: d.mes, encerradas: Math.round(d.SP * 0.52), publicadas: Math.round(d.SP * 0.48), congeladas: 0, canceladas: 0 })),
+  DF: regionaisData2025.map((d, i) => ({ mes: d.mes, encerradas: Math.round(d.DF * 0.52), publicadas: Math.round(d.DF * 0.48), congeladas: 0, canceladas: 0 })),
+  PA: regionaisData2025.map((d, i) => ({ mes: d.mes, encerradas: Math.round(d.PA * 0.52), publicadas: Math.round(d.PA * 0.48), congeladas: 0, canceladas: 0 })),
+};
+
+export const REGIONAIS = ['MG', 'RJ', 'SP', 'DF', 'PA'] as const;
+export type Regional = typeof REGIONAIS[number];
+
 // ─── HELPER FUNCTIONS ────────────────────────────────
-export function getSlaData(ano: number) {
+export function getSlaData(ano: number, regional?: string | null) {
+  if (regional && ano === 2025 && slaRegional2025[regional]) return slaRegional2025[regional];
   return ano === 2025 ? slaData2025 : slaData2026;
 }
 
-export function getVagasData(ano: number) {
+export function getVagasData(ano: number, regional?: string | null) {
+  if (regional && ano === 2025 && vagasRegional2025[regional]) return vagasRegional2025[regional];
   return ano === 2025 ? vagasStatus2025 : vagasStatus2026;
 }
 
-export function getDiversidadeData(ano: number) {
+export function getDiversidadeData(ano: number, regional?: string | null) {
+  if (regional && ano === 2025 && diversidadeRegional2025[regional]) return diversidadeRegional2025[regional];
   return ano === 2025 ? diversidadeData2025 : diversidadeData2026;
 }
 
